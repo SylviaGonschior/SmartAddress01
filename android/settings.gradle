@@ -1,0 +1,3 @@
+rootProject.name = 'SmartAddress'
+
+include ':app'
