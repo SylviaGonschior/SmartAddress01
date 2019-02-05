@@ -1,10 +1,17 @@
 import React from 'react';
 import ContactsScreen from '../contacts/ContactsScreen';
 import SettingsScreen from '../settings/SettingsScreen';
-import { createBottomTabNavigator,createAppContainer } from 'react-navigation';
+import HomeScreen from './HomeScreen';
+import { createBottomTabNavigator,createAppContainer, createStackNavigator } from 'react-navigation';
+import ContactItemScreen from '../contacts/ContactItemScreen';
 
 
 const TabScreens = createBottomTabNavigator({
+    Home: {
+        screen: HomeScreen,
+        tabBarOptions: {
+            title: 'Contacts'}
+    },
     Contacts: {
         screen: ContactsScreen,
         tabBarOptions: {
@@ -39,6 +46,16 @@ const TabScreens = createBottomTabNavigator({
         }
     });
 
-const Tabs = createAppContainer(TabScreens);
+const AppNavigator = createStackNavigator({
+    Root: {
+        screen: TabScreens
+    },
+    Item: {
+        screen: ContactItemScreen
+    }
+
+});
+
+const Tabs = createAppContainer(AppNavigator);
 
 export default Tabs;
