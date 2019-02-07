@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Header, Content, Button, Text } from 'native-base';
+import {StyleSheet, TextInput} from 'react-native';
+import {Container, Header, Content, Button, Text} from 'native-base';
+
 
 export default class ContactsScreen extends Component {
     render() {
 
-        const title = { text: 'Contacts'};
+        const title = {text: 'Contacts'};
+
         return (
             <Container>
                 <Header style={styles.contactsHeader}>
@@ -13,16 +15,20 @@ export default class ContactsScreen extends Component {
                         {title.text}
                     </Text>
                 </Header>
-            <Content>
-                <Text style={styles.contactsBody}>
-                   Und hier kann irgendetwas anderes stehen
-                </Text>
+                <Content>
+                    <Text style={styles.contactsBody}>
+                        Und hier kann irgendetwas anderes stehen
+                    </Text>
 
-                <Button full dark>
-                    <Text>Kontakt hinzufügen</Text>
-                </Button>
-
-            </Content>
+                    <Button full dark
+                  >
+                        <Text>Kontakt hinzufügen</Text>
+                    </Button>
+                    <TextInput
+                        style={styles.input}
+                    placeholder="Kontakt hinzufügen"
+                    returnKeyType="done"/>
+                </Content>
             </Container>
         )
     }
@@ -37,5 +43,8 @@ const styles = StyleSheet.create({
     },
     contactsHeader: {
         backgroundColor: '#E20074'
+    },
+    input: {
+        height: 40
     }
 });
