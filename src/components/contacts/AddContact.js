@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, TextInput, Text, View, FlatList} from 'react-native';
+import {StyleSheet, TextInput, Text, View, FlatList, KeyboardAvoidingView} from 'react-native';
+import {Button, Container, Header} from "native-base";
 
 
 export default class AddContact extends Component {
@@ -9,12 +10,12 @@ export default class AddContact extends Component {
         this.setState({
             items: [...this.state.items, {text, date: Date.now()}]
         });
+        this.textInput.clear();
     }
 
     render() {
 
-        const title = {text: "Hier Kontakt hinzufügen:"};
-        const noContacts = {text: 'Es sind keine Kontakte hinzugefügt'};
+        const title = {text: 'Kontakte'};
 
         let content = <Text>Keine Kontakte</Text>;
         if (this.state.items.length > 0) {
@@ -31,19 +32,24 @@ export default class AddContact extends Component {
         return (
             <View style={styles.container}>
 
-                <Text>
-                    {title.text}
-                </Text>
-
-
-                <Text style={styles.contactsBody}>{this.state.item || noContacts.text}</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Kontakt hinzufügen"
-                    returnKeyType="done"
-                    onSubmitEditing={event => this._addItem(event.nativeEvent.text)}/>
-
+                <Header style={styles.contactsHeader}>
+                    <Text>
+                        {title.text}
+                    </Text>
+                </Header>
+                <Button full dark>
+                    <Text>Kontakt hinzufügen</Text>
+                </Button>
                 {content}
+                <KeyboardAvoidingView behavior="padding">
+                    <TextInput
+                        style={styles.input}
+                        ref={input => (this.textInput = input)}
+                        placeholder="Kontakt hinzufügen"
+                        returnKeyType="done"
+                        onSubmitEditing={event => this._addItem(event.nativeEvent.text)}/>
+
+                </KeyboardAvoidingView>
             </View>
         )
     }
@@ -59,6 +65,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center'
+    },
+    contactsHeader: {
+        backgroundColor: '#E20074',
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10
+    },
+    list: {
+        marginTop: 24
     },
     input: {
         height: 40
