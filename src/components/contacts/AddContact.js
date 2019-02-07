@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, TextInput, FlatList} from 'react-native';
-import {Container, Text, Button} from 'native-base';
+import {StyleSheet, TextInput, Text, View, FlatList} from 'react-native';
 
 
-export default class ContactsScreen extends Component {
+export default class AddContact extends Component {
     state = {items: []};
 
     _addItem(text) {
@@ -13,8 +12,10 @@ export default class ContactsScreen extends Component {
     }
 
     render() {
+
         const title = {text: "Hier Kontakt hinzufügen:"};
         const noContacts = {text: 'Es sind keine Kontakte hinzugefügt'};
+
         let content = <Text>Keine Kontakte</Text>;
         if (this.state.items.length > 0) {
             content = (
@@ -28,15 +29,14 @@ export default class ContactsScreen extends Component {
 
 
         return (
-            <Container style={styles.container}>
+            <View style={styles.container}>
+
                 <Text>
                     {title.text}
                 </Text>
-                <Button full dark
-                >
-                    <Text>Kontakt hinzufügen</Text>
-                </Button>
 
+
+                <Text style={styles.contactsBody}>{this.state.item || noContacts.text}</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="Kontakt hinzufügen"
@@ -44,10 +44,7 @@ export default class ContactsScreen extends Component {
                     onSubmitEditing={event => this._addItem(event.nativeEvent.text)}/>
 
                 {content}
-
-
-            </Container>
-
+            </View>
         )
     }
 
@@ -56,14 +53,14 @@ export default class ContactsScreen extends Component {
 const styles = StyleSheet.create({
     contactsBody: {
         fontSize: 20,
-        justifyContent: 'center',
-        flex: 1
+        textAlign: 'center',
+        margin: 10
     },
-    list: {
-        marginTop: 24
+    container: {
+        flex: 1,
+        justifyContent: 'center'
     },
     input: {
         height: 40
-    },
-
+    }
 });
