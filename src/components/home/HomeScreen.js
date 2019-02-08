@@ -1,27 +1,29 @@
 import React, {Component} from 'react';
-import { Text, View, StyleSheet } from 'react-native';
 
-export default class HomeScreen extends Component {
+import {Title, Container, Header, Left, Body, Right, Button, Icon} from 'native-base';
+
+class HomeScreen extends Component {
     render() {
 
         return (
-            <View>
-                <Text style={styles.homeBody}>
-                    Home sweet Home
 
-                </Text>
+            <Container>
+                <Header>
+                    <Left>
+                        <Button transparent>
+                            <Icon name='arrow-back' />
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Title>Home</Title>
+                    </Body>
+                    <Right />
+                </Header>
+            </Container>
 
-
-            </View>
         )
     }
 
 }
 
-const styles = StyleSheet.create({
-    homeBody: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    }
-});
+export default HomeScreen;

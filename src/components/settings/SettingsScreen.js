@@ -1,27 +1,26 @@
 import React, {Component} from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+
+import {Body, Button, Container, Header, Icon, Left, Right, Title} from "native-base";
 
 export default class SettingsScreen extends Component {
     render() {
 
         return (
-            <View>
-                <Text style={styles.settings}>
-                    settings
-
-                </Text>
-
-
-            </View>
+            <Container>
+                <Header>
+                    <Left>
+                        <Button transparent>
+                            <Icon name='arrow-back' />
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Title>Settings</Title>
+                    </Body>
+                    <Right />
+                </Header>
+            </Container>
         )
     }
 
 }
 
-const styles = StyleSheet.create({
-    settings: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    }
-});
