@@ -1,0 +1,37 @@
+[
+  {
+    "contactId": "1",
+    "phone": "+495164123456",
+    "first": "Knut",
+    "last": "Larson",
+    "street": "Bahnhofstrasse",
+    "number": "5",
+    "zipCode": "64295",
+    "city": "Darmstadt",
+    "uri": "../pics/photoBG.png"
+
+  },
+  {
+    "contactId": "2",
+    "phone": "+49221641239098",
+    "first": "Tom",
+    "last": "Assmann",
+    "street": "Hauptstrasse",
+    "number": "160",
+    "zipCode": "64625",
+    "city": "Bensheim",
+    "uri": "../pics/photoTG.png"
+  },
+  {
+    "contactId": "3",
+    "phone": "+49233452881",
+    "first": "Heidi",
+    "last": "Zahn",
+    "street": "Alte Heerstrasse",
+    "number": "24",
+    "zipCode": "58119",
+    "city": "Hagen",
+    "uri": "../pics/photoSG.png"
+  }
+
+];
