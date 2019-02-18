@@ -4,6 +4,8 @@ import List from './List';
 
 
 
+
+
 export default class ContactsScreen extends Component {
 
 
@@ -26,6 +28,7 @@ export default class ContactsScreen extends Component {
             <Content>
 
                <List />
+
 
             </Content>
 
