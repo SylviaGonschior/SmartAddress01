@@ -4,8 +4,6 @@ import List from './List';
 
 
 
-
-
 export default class ContactsScreen extends Component {
 
 
@@ -13,26 +11,33 @@ export default class ContactsScreen extends Component {
         const title = {text: 'Kontakte'};
 
 
-        return <Container style={{flex:1}}>
-            <Header>
-                <Left>
-                    <Button transparent>
-                        <Icon name='arrow-back'/>
-                    </Button>
-                </Left>
-                <Body>
-                <Title>{title.text}</Title>
-                </Body>
-                <Right/>
-            </Header>
-            <Content>
+        return (
+            <Container style={{flex: 1}}>
+                <Header>
+                    <Left>
+                        <Button
+                            transparent
+                            onPress={()=> this.props.navigation.goBack()}
+                        >
+                            <Icon name='arrow-back'/>
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Title>{title.text}</Title>
+                    </Body>
+                    <Right/>
+                </Header>
+                <Content>
 
-               <List />
+                    <List/>
 
 
-            </Content>
 
-        </Container>;
+
+                </Content>
+
+            </Container>
+        );
     }
 
 }
