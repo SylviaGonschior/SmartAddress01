@@ -3,6 +3,7 @@ import {Container, Content, Card, CardItem, Grid, Col, Text, Row, Thumbnail} fro
 import {StyleSheet, View} from "react-native";
 import datas from '../../mocks/contacts_data';
 
+const image = '../../pics/photoBG.png';
 
 class List extends Component {
 
@@ -14,11 +15,13 @@ class List extends Component {
                 <Card key={contact.contactId}>
                     <CardItem>
                         <Grid style={styles.grid}>
-                            <Col style={styles.imageCol}>
-                                {contact.uri &&
-                                <Thumbnail source={{uri: contact.uri}}/>
-                                }
-                            </Col>
+
+                                <Col style={styles.imageCol}>
+
+                                    <Thumbnail large style={styles.image} source={require(image)}/>
+
+                                </Col>
+
                             <Col>
                                 <Row>
                                     <Text style={styles.name}> {contact.first} {contact.last}</Text>
@@ -34,8 +37,6 @@ class List extends Component {
                                 </Row>
                             </Col>
                         </Grid>
-
-
                     </CardItem>
                 </Card>
             );
@@ -49,9 +50,11 @@ class List extends Component {
     };
 
 
+
     render() {
 
         let list = this.getList();
+
 
         return (
 
