@@ -1,14 +1,21 @@
 import React, {Component} from 'react';
 import {Title, Container, Header, Left, Body, Right, Button, Icon, Content} from 'native-base';
 import List from './List';
-
+import datas from '../../mocks/contacts_data';
 
 export default class ContactsScreen extends Component {
 
+    onClickContactItem = (clickedContactId) => {
+        let myContact = ''; //TODO: get contact by id from datas
+
+        const {navigate} = this.props.navigation;
+        navigate('Details', {
+            contact: myContact
+        });
+    }
 
     render() {
         const title = {text: 'Kontakte'};
-        const {navigate, goBack} = this.props.navigation;
 
 
         return (
@@ -30,7 +37,8 @@ export default class ContactsScreen extends Component {
                 <Content>
 
                     <List
-                        onClick={() => navigate('Details')}
+                        onClick={this.onClickContactItem}
+                        contacts={datas}
                     />
 
                 </Content>
