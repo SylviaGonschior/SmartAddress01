@@ -3,12 +3,12 @@ import {Title, Container, Header, Left, Body, Right, Button, Icon, Content} from
 import List from './List';
 
 
-
 export default class ContactsScreen extends Component {
 
 
     render() {
         const title = {text: 'Kontakte'};
+        const {navigate, goBack} = this.props.navigation;
 
 
         return (
@@ -17,7 +17,7 @@ export default class ContactsScreen extends Component {
                     <Left>
                         <Button
                             transparent
-                            onPress={()=> this.props.navigation.goBack()}
+                            onPress={() => goBack()}
                         >
                             <Icon name='arrow-back'/>
                         </Button>
@@ -29,10 +29,9 @@ export default class ContactsScreen extends Component {
                 </Header>
                 <Content>
 
-                    <List/>
-
-
-
+                    <List
+                        onClick={() => navigate('Details')}
+                    />
 
                 </Content>
 
