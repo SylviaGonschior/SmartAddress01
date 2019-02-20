@@ -6,7 +6,7 @@ import datas from '../../mocks/contacts_data';
 export default class ContactsScreen extends Component {
 
     onClickContactItem = (clickedContactId) => {
-        let myContact = ''; //TODO: get contact by id from datas
+        let myContact = datas.find(contactId => contactId.contactId === clickedContactId);
 
         const {navigate} = this.props.navigation;
         navigate('Details', {
