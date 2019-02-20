@@ -12,17 +12,28 @@ class List extends Component {
     static propTypes = {
         onClick: PropTypes.func,
         contacts: PropTypes.array.isRequired
-    }
+    };
 
     constructor(props) {
         super(props);
     }
 
+    _onClickCardItem = (id) => {
+        const {
+            onClick
+        } = this.props;
+
+        onClick(id);
+
+
+    }
+
+
     getList = () => {
-        const listItems = this.props.contacts.map((contact) => { //TODO: Funktion onClick auslagern
+        const listItems = this.props.contacts.map((contact) => {
             return (
                 <Card key={contact.contactId}>
-                    <CardItem button onPress={() =>this.props.onClick(contact.contactId)}>
+                    <CardItem button onPress={() => this._onClickCardItem(contact.contactId)}>
                         <Grid style={styles.grid}>
                             <Col style={styles.imageCol}>
                                 <Thumbnail large style={styles.image} source={require(image)}/>
