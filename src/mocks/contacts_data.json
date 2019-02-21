@@ -8,7 +8,7 @@
     "number": "5",
     "zipCode": "64295",
     "city": "Darmstadt",
-    "uri": "../pics/photoBG.png"
+    "image": "../pics/photoBG.png"
 
   },
   {
@@ -20,7 +20,7 @@
     "number": "160",
     "zipCode": "64625",
     "city": "Bensheim",
-    "uri": "../pics/photoTG.png"
+    "image": "../pics/photoTG.png"
   },
   {
     "contactId": "3",
@@ -31,7 +31,18 @@
     "number": "24",
     "zipCode": "58119",
     "city": "Hagen",
-    "uri": "../pics/photoSG.png"
+    "image": "../pics/photoSG.png"
+  },
+  {
+    "contactId": "4",
+    "phone": "+496336175884",
+    "first": "Pia",
+    "last": "Champion",
+    "street": "Margaritten Weg",
+    "number": "168 a ",
+    "zipCode": "64572",
+    "city": "Büttelborn",
+    "image": "../pics/photoSG.png"
   }
 
-];
+]
