@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Container, Content, Card, CardItem, Grid, Col, Text, Row, Thumbnail} from 'native-base';
 import {StyleSheet, View} from "react-native";
-import datas from '../../mocks/contacts_data';
 import PropTypes from 'prop-types';
 
 
@@ -11,29 +10,34 @@ const image = '../../pics/photoBG.png';
 class List extends Component {
 
     static propTypes = {
-
-        onClick: PropTypes.func
-    }
+        onClick: PropTypes.func,
+        contacts: PropTypes.array.isRequired
+    };
 
     constructor(props) {
         super(props);
+    }
+
+    _onClickCardItem = (id) => {
+        const {
+            onClick
+        } = this.props;
+
+        onClick(id);
+
 
     }
 
+
     getList = () => {
-
-        const listItems = datas.map((contact) => {
+        const listItems = this.props.contacts.map((contact, i) => {
             return (
-                <Card key={contact.contactId}>
-                    <CardItem button onPress={this.props.onClick}>
+                <Card key={i}>
+                    <CardItem button onPress={() => this._onClickCardItem(contact.contactId)}>
                         <Grid style={styles.grid}>
-
-                                <Col style={styles.imageCol}>
-
-                                    <Thumbnail large style={styles.image} source={require(image)}/>
-
-                                </Col>
-
+                            <Col style={styles.imageCol}>
+                                <Thumbnail large style={styles.image} source={require(image)}/>
+                            </Col>
                             <Col>
                                 <Row>
                                     <Text style={styles.name}> {contact.first} {contact.last}</Text>
@@ -62,7 +66,6 @@ class List extends Component {
     };
 
 
-
     render() {
 
 
@@ -73,7 +76,6 @@ class List extends Component {
 
             <Container>
                 <Content>
-
                     {list}
 
                 </Content>
