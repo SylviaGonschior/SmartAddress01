@@ -30,9 +30,9 @@ class List extends Component {
 
 
     getList = () => {
-        const listItems = this.props.contacts.map((contact) => {
+        const listItems = this.props.contacts.map((contact, i) => {
             return (
-                <Card key={contact.contactId}>
+                <Card key={i}>
                     <CardItem button onPress={() => this._onClickCardItem(contact.contactId)}>
                         <Grid style={styles.grid}>
                             <Col style={styles.imageCol}>
