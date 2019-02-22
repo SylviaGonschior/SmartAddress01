@@ -15,7 +15,8 @@ class ContactDetail extends Component {
             number,
             zipCode,
             city,
-            phone
+            phone,
+            image
         } = this.props.navigation.getParam('contact');
 
         return (
@@ -24,7 +25,7 @@ class ContactDetail extends Component {
                     <Content style={styles.text}>
                         <Grid style={styles.grid}>
                             <Col style={styles.imageCol}>
-                                <Thumbnail large style={styles.image} source={require('../../pics/photoBG.png')}/>
+                                <Thumbnail large style={styles.image} source={{uri: image}}/>
                             </Col>
                             <Col>
                                 <Text style={styles.title}> Name: </Text>

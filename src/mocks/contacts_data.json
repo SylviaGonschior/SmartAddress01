@@ -8,7 +8,7 @@
     "number": "5",
     "zipCode": "64295",
     "city": "Darmstadt",
-    "image": "../pics/photoBG.png"
+    "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoBG.png"
 
   },
   {
@@ -20,7 +20,7 @@
     "number": "160",
     "zipCode": "64625",
     "city": "Bensheim",
-    "image": "../pics/photoTG.png"
+    "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoTG.png"
   },
   {
     "contactId": "3",
@@ -31,7 +31,7 @@
     "number": "24",
     "zipCode": "58119",
     "city": "Hagen",
-    "image": "../pics/photoSG.png"
+    "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoSG.png"
   },
   {
     "contactId": "4",
@@ -42,7 +42,7 @@
     "number": "168 a ",
     "zipCode": "64572",
     "city": "Büttelborn",
-    "image": "../pics/photoSG.png"
+    "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoSG.png"
   }
 
 ]

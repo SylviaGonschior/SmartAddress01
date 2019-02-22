@@ -3,10 +3,6 @@ import {Container, Content, Card, CardItem, Grid, Col, Text, Row, Thumbnail} fro
 import {StyleSheet, View} from "react-native";
 import PropTypes from 'prop-types';
 
-
-const image = '../../pics/photoBG.png';
-
-
 class List extends Component {
 
     static propTypes = {
@@ -36,7 +32,7 @@ class List extends Component {
                     <CardItem button onPress={() => this._onClickCardItem(contact.contactId)}>
                         <Grid style={styles.grid}>
                             <Col style={styles.imageCol}>
-                                <Thumbnail large style={styles.image} source={require(image)}/>
+                                <Thumbnail large style={styles.image} source={{uri: contact.image}}/>
                             </Col>
                             <Col>
                                 <Row>
