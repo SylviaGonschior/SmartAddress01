@@ -22,17 +22,14 @@ class List extends Component {
         const {
             onClick
         } = this.props;
-
         onClick(id);
-
-
     }
 
 
     getList = () => {
-        const listItems = this.props.contacts.map((contact, i) => {
+        const listItems = this.props.contacts.map((contact) => {
             return (
-                <Card key={i}>
+                <Card key={contact.contactId}>
                     <CardItem button onPress={() => this._onClickCardItem(contact.contactId)}>
                         <Grid style={styles.grid}>
                             <Col style={styles.imageCol}>

@@ -5,7 +5,7 @@ import AddContactButton from "./AddContactButton";
 
 
 
-export default class ContactsScreen extends Component {
+export default class ListTest extends Component {
     constructor(props) {
         super(props);
         this.state = {
