@@ -1,73 +1,59 @@
 import React, {Component} from 'react';
-import {Container, Content, Text, Thumbnail, Grid, Col, Row} from 'native-base';
-import {StyleSheet} from 'react-native';
-
-const contactKnut =
-{
-    "contactId": "1",
-    "phone": "+495164123456",
-    "first": "Knut",
-    "last": "Larson",
-    "street": "Bahnhofstrasse",
-    "number": "5",
-    "zipCode": "64295",
-    "city": "Darmstadt",
-    "image": "../../pics/photoBG.png"
-
-};
+import {Container, Content, Text, Thumbnail, Grid, Col} from 'native-base';
+import {StyleSheet, View} from 'react-native';
 
 
 class ContactDetail extends Component {
-    render() {
 
+
+    render() {
+        console.log('props: ', this.props.navigation.getParam('contact'));
+        const {
+            first,
+            last,
+            street,
+            number,
+            zipCode,
+            city,
+            phone
+        } = this.props.navigation.getParam('contact');
 
         return (
-            <Container style={styles.container}>
-                <Content style={styles.text}>
-                    <Grid style={styles.grid}>
-                    <Col style={styles.imageCol}>
-
-                        <Thumbnail large style={styles.image} source={require('../../pics/photoBG.png')}/>
-
-                    </Col>
-                        <Col>
-
-                    <Text style={styles.title}> Name: </Text>
-
-
-                    <Text style={styles.field}> {contactKnut.first} {contactKnut.last} </Text>
-
-
-                    <Text style={styles.title}> Adresse: </Text>
-
-
-                    <Text style={styles.field}> {contactKnut.street} {contactKnut.number}</Text>
-
-                    <Text style={styles.field} > {contactKnut.zipCode} {contactKnut.city}</Text>
-
-                    <Text style={styles.title}> Telefonnummer: </Text>
-
-                    <Text style={styles.field} > {contactKnut.phone}</Text>
-
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <Container style={styles.container}>
+                    <Content style={styles.text}>
+                        <Grid style={styles.grid}>
+                            <Col style={styles.imageCol}>
+                                <Thumbnail large style={styles.image} source={require('../../pics/photoBG.png')}/>
                             </Col>
-                    </Grid>
-                    <Text style={{backgroundColor: 'blue', width: 400, height: 400}}> Google Maps View</Text>
-                </Content>
-            </Container>
+                            <Col>
+                                <Text style={styles.title}> Name: </Text>
+                                <Text style={styles.field}> {first} {last} </Text>
+                                <Text style={styles.title}> Adresse: </Text>
+                                <Text style={styles.field}> {street} {number}</Text>
+                                <Text style={styles.field}> {zipCode} {city}</Text>
+                                <Text style={styles.title}> Telefonnummer: </Text>
+                                <Text style={styles.field}> {phone}</Text>
+                            </Col>
+                        </Grid>
+                        <Text style={{backgroundColor: 'blue', width: 400, height: 400}}> Google Maps View</Text>
+                    </Content>
+                </Container>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex: 1,
         color: '#6C6C6C',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'stretch'
     },
     text: {
-        flex:1,
+        flex: 1,
         fontSize: 24,
         color: '#4B4B4B'
     },
@@ -77,7 +63,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#4B4B4B'
     },
-    field:{
+    field: {
 
         borderWidth: 1,
         borderRadius: 8
