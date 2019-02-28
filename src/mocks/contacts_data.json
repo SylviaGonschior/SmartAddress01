@@ -2,47 +2,64 @@
   {
     "contactId": "1",
     "phone": "+495164123456",
-    "first": "Knut",
-    "last": "Larson",
-    "street": "Bahnhofstrasse",
-    "number": "5",
-    "zipCode": "64295",
-    "city": "Darmstadt",
+    "name":{
+      "first": "Knut",
+      "last": "Larson"
+    },
+    "address": {
+      "street": "Bahnhofstrasse",
+      "number": "5",
+      "zipCode": "64295",
+      "city": "Darmstadt"
+    },
     "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoBG.png"
 
   },
   {
     "contactId": "2",
     "phone": "+49221641239098",
-    "first": "Tom",
-    "last": "Assmann",
-    "street": "Hauptstrasse",
-    "number": "160",
-    "zipCode": "64625",
-    "city": "Bensheim",
+    "name":{
+      "first": "Tom",
+      "last": "Assmann"
+    },
+    "address": {
+      "street": "Hauptstrasse",
+      "number": "160",
+      "zipCode": "64625",
+      "city": "Bensheim"
+    },
+
     "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoTG.png"
   },
   {
     "contactId": "3",
     "phone": "+49233452881",
-    "first": "Heidi",
-    "last": "Zahn",
-    "street": "Alte Heerstrasse",
-    "number": "24",
-    "zipCode": "58119",
-    "city": "Hagen",
+    "name":{
+      "first": "Heidi",
+      "last": "Zahn"
+    },
+   "address": {
+     "street": "Alte Heerstrasse",
+     "number": "24",
+     "zipCode": "58119",
+     "city": "Hagen"
+   },
     "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoSG.png"
   },
   {
     "contactId": "4",
     "phone": "+496336175884",
-    "first": "Pia",
-    "last": "Champion",
-    "street": "Margaritten Weg",
-    "number": "168 a ",
-    "zipCode": "64572",
-    "city": "Büttelborn",
-    "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoSG.png"
+    "name": {
+      "first": "Pia",
+      "last": "Champion"
+    },
+   "address":{
+     "street": "Margaritten Weg",
+     "number": "168 a ",
+     "zipCode": "64572",
+     "city": "Büttelborn"
+   },
+    "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/feature/picView/src/pics/photoCN.png"
   }
 
 ]
