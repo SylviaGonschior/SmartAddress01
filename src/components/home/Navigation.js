@@ -4,18 +4,51 @@ import SettingsScreen from '../settings/SettingsScreen';
 import HomeScreen from './HomeScreen';
 import {createBottomTabNavigator, createAppContainer, createStackNavigator} from 'react-navigation';
 import ContactDetail from '../contacts/ContactDetail';
+import {Icon} from 'native-base';
+
 
 const TabScreens = createBottomTabNavigator({
     Home: {
         screen: HomeScreen,
+        navigationOptions: {
+            tabBarLabel:"Home",
+            tabBarIcon:({ focused }) => (
+                <Icon
+                    name= 'home'
+                    size={20}
+                    style={{color: focused ? '#262626' : '#FFFFFF', marginTop:30, height:25, width: 110 }}
+                />
+            ),
+            showIcon: true
+        }
     },
     Contacts: {
         screen: ContactsScreen,
-
-        tabBarPosition: 'top'
+        navigationOptions: {
+            tabBarLabel:"Kontakte",
+            tabBarIcon:({ focused }) => (
+                <Icon
+                    name= 'contacts'
+                    size={20}
+                    style={{color: focused ? '#262626' : '#FFFFFF', marginTop:30, height:25, width: 140 }}
+                />
+            ),
+            showIcon: true
+        }
     },
     Settings: {
         screen: SettingsScreen,
+        navigationOptions: {
+            tabBarLabel:"Settings",
+            tabBarIcon:({ focused }) => (
+                <Icon
+                    name= 'settings'
+                    size={20}
+                    style={{color: focused ? '#262626' : '#FFFFFF', marginTop:30, height:25, width: 130 }}
+                />
+            ),
+            showIcon: true
+        }
 
     }
 }, {
@@ -26,7 +59,6 @@ const TabScreens = createBottomTabNavigator({
         labelStyle: {
             fontSize: 18,
             fontWeight: '400'
-
         },
         style: {
             backgroundColor: '#e91e63',
@@ -37,16 +69,29 @@ const TabScreens = createBottomTabNavigator({
 });
 
 
-const AppNavigator = createStackNavigator({
-    Root: {
-        screen: TabScreens,
-
+const AppNavigator = createStackNavigator(
+    {
+        Root: {
+            screen: TabScreens,
+        },
+        Details: {
+            screen: ContactDetail
+        }
     },
-    Details: {
-        screen: ContactDetail
+    {
+        initialRoute: 'Home',
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#f4511e',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+            header: null
+        }
     }
-
-});
+);
 
 const Tabs = createAppContainer(AppNavigator);
 
