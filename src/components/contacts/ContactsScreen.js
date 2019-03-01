@@ -3,6 +3,7 @@ import {Title, Container, Header, Left, Body, Right, Button, Icon, Content} from
 import List from './List';
 import datas from '../../mocks/contacts_data';
 
+
 export default class ContactsScreen extends Component {
 
     onClickContactItem = (clickedContactId) => {
@@ -24,7 +25,7 @@ export default class ContactsScreen extends Component {
                     <Left>
                         <Button
                             transparent
-                            onPress={() => goBack()}
+                            onPress={() => this.props.navigation.goBack()}
                         >
                             <Icon name='arrow-back'/>
                         </Button>
