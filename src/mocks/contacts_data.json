@@ -2,27 +2,30 @@
   {
     "contactId": "1",
     "phone": "+495164123456",
-    "name":{
       "first": "Knut",
-      "last": "Larson"
-    },
-    "address": {
+      "last": "Larson",
+    "addresses":[{
       "street": "Bahnhofstrasse",
       "number": "5",
       "zipCode": "64295",
-      "city": "Darmstadt"
-    },
+      "city": "Darmstadt",
+      "addressType": "PRIVATE"
+    }, {
+      "street": "Hauptstrasse",
+      "number": "498",
+      "zipCode": "62598",
+      "city": "Frankfurt",
+      "addressType": "Business"
+    }],
     "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoBG.png"
 
   },
   {
     "contactId": "2",
     "phone": "+49221641239098",
-    "name":{
       "first": "Tom",
-      "last": "Assmann"
-    },
-    "address": {
+      "last": "Assmann",
+    "addresses": {
       "street": "Hauptstrasse",
       "number": "160",
       "zipCode": "64625",
@@ -34,11 +37,9 @@
   {
     "contactId": "3",
     "phone": "+49233452881",
-    "name":{
       "first": "Heidi",
-      "last": "Zahn"
-    },
-   "address": {
+      "last": "Zahn",
+   "addresses": {
      "street": "Alte Heerstrasse",
      "number": "24",
      "zipCode": "58119",
@@ -49,11 +50,9 @@
   {
     "contactId": "4",
     "phone": "+496336175884",
-    "name": {
       "first": "Pia",
-      "last": "Champion"
-    },
-   "address":{
+      "last": "Champion",
+   "addresses":{
      "street": "Margaritten Weg",
      "number": "168 a ",
      "zipCode": "64572",

@@ -36,13 +36,13 @@ class List extends Component {
                             </Col>
                             <Col>
                                 <Row>
-                                    <Text style={styles.name}> {contact.name.first} {contact.name.last}</Text>
+                                    <Text style={styles.name}> {contact.first} {contact.last}</Text>
                                 </Row>
                                 <Row>
-                                    <Text style={styles.address}> {contact.address.street} {contact.address.number}</Text>
+                                    <Text style={styles.address}> {contact.addresses.street} {contact.addresses.number}</Text>
                                 </Row>
                                 <Row>
-                                    <Text style={styles.address}> {contact.address.zipCode} {contact.address.city}</Text>
+                                    <Text style={styles.address}> {contact.addresses.zipCode} {contact.addresses.city}</Text>
                                 </Row>
                                 <Row>
                                     <Text style={styles.tel}> {contact.phone} </Text>

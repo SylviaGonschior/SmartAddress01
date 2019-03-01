@@ -9,8 +9,9 @@ class ContactDetail extends Component {
     render() {
         console.log('props: ', this.props.navigation.getParam('contact'));
         const {
-            name,
-            address,
+            first,
+            last,
+            addresses,
             phone,
             image
         } = this.props.navigation.getParam('contact');
@@ -41,10 +42,10 @@ class ContactDetail extends Component {
                             </Col>
                             <Col>
                                 <Text style={styles.title}> Name: </Text>
-                                <Text style={styles.field}> {name.first} {name.last} </Text>
+                                <Text style={styles.field}> {first} {last} </Text>
                                 <Text style={styles.title}> Adresse: </Text>
-                                <Text style={styles.field}> {address.street} {address.number}</Text>
-                                <Text style={styles.field}> {address.zipCode} {address.city}</Text>
+                                <Text style={styles.field}> {addresses.street} {addresses.number}</Text>
+                                <Text style={styles.field}> {addresses.zipCode} {addresses.city}</Text>
                                 <Text style={styles.title}> Telefonnummer: </Text>
                                 <Text style={styles.field}> {phone}</Text>
                             </Col>
