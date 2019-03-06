@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Title, Container, Header, Left, Body, Right, Button, Icon, Content} from 'native-base';
 import List from './List';
-import datas from '../../mocks/contacts_data';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 
 
@@ -38,7 +37,7 @@ class ContactsScreen extends Component {
 
 
     onClickContactItem = (clickedContactId) => {
-        let myContact = datas.find(contactId => contactId.contactId === clickedContactId);
+        let myContact = this.state.contacts.find(contactId => contactId.contactId === clickedContactId);
 
         const {navigate} = this.props.navigation;
         navigate('Details', {
@@ -47,6 +46,7 @@ class ContactsScreen extends Component {
     }
 
     render() {
+        console.log(this.state);
         const title = {text: 'Kontakte'};
 
         // console.log('nav props: ', this.props.navigation);
