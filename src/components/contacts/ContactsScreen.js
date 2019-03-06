@@ -2,9 +2,40 @@ import React, {Component} from 'react';
 import {Title, Container, Header, Left, Body, Right, Button, Icon, Content} from 'native-base';
 import List from './List';
 import datas from '../../mocks/contacts_data';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 
 
-export default class ContactsScreen extends Component {
+class ContactsScreen extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: true,
+            contacts: [],
+            error: null
+
+        }
+    }
+
+    componentDidMount() {
+        fetch('http://192.168.2.118:8080/api/contacts')
+            .then((response) => response.json())
+            .then((contacts) => {
+                this.setState({
+                    isLoading: false,
+                    contacts: contacts
+                })
+
+            })
+
+            .catch((error) => {
+                this.setState({
+                    isLoading: false,
+                    error: error
+                })
+            });
+    }
+
 
     onClickContactItem = (clickedContactId) => {
         let myContact = datas.find(contactId => contactId.contactId === clickedContactId);
@@ -18,34 +49,62 @@ export default class ContactsScreen extends Component {
     render() {
         const title = {text: 'Kontakte'};
 
+        // console.log('nav props: ', this.props.navigation);
+        if (this.state.isLoading) {
 
-        return (
-            <Container style={{flex: 1}}>
-                <Header>
-                    <Left>
-                        <Button
-                            transparent
-                            onPress={() => this.props.navigation.goBack()}
-                        >
-                            <Icon name='arrow-back'/>
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>{title.text}</Title>
-                    </Body>
-                    <Right/>
-                </Header>
-                <Content>
+            return (
+                <View style={styles.container}>
+                    <ActivityIndicator/>
+                </View>
+            )
+        } else {
 
-                    <List
-                        onClick={this.onClickContactItem}
-                        contacts={datas}
-                    />
+            return (
+                <Container style={{flex: 1}}>
+                    <Header>
+                        <Left>
+                            <Button
+                                transparent
+                                onPress={() => this.props.navigation.goBack()}
+                            >
+                                <Icon name='arrow-back'/>
+                            </Button>
+                        </Left>
+                        <Body>
+                        <Title>{title.text}</Title>
+                        </Body>
+                        <Right/>
+                    </Header>
+                    <Content>
 
-                </Content>
+                        <List
+                            onClick={this.onClickContactItem}
+                            contacts={this.state.contacts}
+                        />
 
-            </Container>
-        );
+                    </Content>
+
+                </Container>
+            );
+        }
     }
-
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    item: {
+        flex: 1,
+        alignSelf: 'stretch',
+        margin: 10,
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: '#eee'
+    }
+});
+
+export default ContactsScreen;
