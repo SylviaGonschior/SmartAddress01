@@ -21,7 +21,7 @@
           "addressType": "Business"
         }
       ],
-      "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoBG.png"
+      "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/avatar_1.png"
     },
     {
       "contactId": "2",
@@ -34,7 +34,7 @@
         "zipCode": "64625",
         "city": "Bensheim"
       },
-      "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoTG.png"
+      "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/avatar_2.png"
     },
     {
       "contactId": "3",
@@ -47,7 +47,7 @@
         "zipCode": "58119",
         "city": "Hagen"
       },
-      "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/photoSG.png"
+      "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/avatar_3.png"
     },
     {
       "contactId": "4",
@@ -60,7 +60,7 @@
         "zipCode": "64572",
         "city": "Büttelborn"
       },
-      "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/feature/picView/src/pics/photoCN.png"
+      "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/feature/picView/src/pics/avatar_4.png"
     }
   ]
 }
