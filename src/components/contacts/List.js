@@ -3,10 +3,6 @@ import {Container, Content, Card, CardItem, Grid, Col, Text, Row, Thumbnail} fro
 import {StyleSheet, View} from "react-native";
 import PropTypes from 'prop-types';
 
-
-const image = '../../pics/photoBG.png';
-
-
 class List extends Component {
 
     static propTypes = {
@@ -22,28 +18,31 @@ class List extends Component {
         const {
             onClick
         } = this.props;
+
         onClick(id);
+
+
     }
 
 
     getList = () => {
-        const listItems = this.props.contacts.map((contact) => {
+        const listItems = this.props.contacts.map((contact, i) => {
             return (
-                <Card key={contact.contactId}>
+                <Card key={i}>
                     <CardItem button onPress={() => this._onClickCardItem(contact.contactId)}>
                         <Grid style={styles.grid}>
                             <Col style={styles.imageCol}>
-                                <Thumbnail large style={styles.image} source={require(image)}/>
+                                <Thumbnail large style={styles.image} source={{uri: contact.image}}/>
                             </Col>
                             <Col>
                                 <Row>
                                     <Text style={styles.name}> {contact.first} {contact.last}</Text>
                                 </Row>
                                 <Row>
-                                    <Text style={styles.address}> {contact.street} {contact.number}</Text>
+                                    <Text style={styles.address}> {contact.addresses[0].street} {contact.addresses[0].number}</Text>
                                 </Row>
                                 <Row>
-                                    <Text style={styles.address}> {contact.zipCode} {contact.city}</Text>
+                                    <Text style={styles.address}> {contact.addresses[0].zipCode} {contact.addresses[0].city}</Text>
                                 </Row>
                                 <Row>
                                     <Text style={styles.tel}> {contact.phone} </Text>
