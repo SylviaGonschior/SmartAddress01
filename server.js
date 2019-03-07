@@ -7,6 +7,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/contacts', (req, res) => {
+    console.log('get request, respond data');
     res.send(contacts);
 });
 

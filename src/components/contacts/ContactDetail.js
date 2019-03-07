@@ -44,8 +44,8 @@ class ContactDetail extends Component {
                                 <Text style={styles.title}> Name: </Text>
                                 <Text style={styles.field}> {first} {last} </Text>
                                 <Text style={styles.title}> Adresse: </Text>
-                                <Text style={styles.field}> {addresses.street} {addresses.number}</Text>
-                                <Text style={styles.field}> {addresses.zipCode} {addresses.city}</Text>
+                                <Text style={styles.field}> {addresses[0].street} {addresses[0].number}</Text>
+                                <Text style={styles.field}> {addresses[0].zipCode} {addresses[0].city}</Text>
                                 <Text style={styles.title}> Telefonnummer: </Text>
                                 <Text style={styles.field}> {phone}</Text>
                             </Col>

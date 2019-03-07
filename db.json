@@ -28,12 +28,21 @@
       "phone": "+49221641239098",
       "first": "Tom",
       "last": "Assmann",
-      "addresses": {
-        "street": "Hauptstrasse",
-        "number": "160",
-        "zipCode": "64625",
-        "city": "Bensheim"
-      },
+      "addresses": [
+        {
+          "street": "Hauptstrasse",
+          "number": "160",
+          "zipCode": "64625",
+          "city": "Bensheim"
+        },
+        {
+          "street": "Hauptstrasse",
+          "number": "498",
+          "zipCode": "62598",
+          "city": "Frankfurt",
+          "addressType": "Business"
+        }
+      ],
       "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/avatar_2.png"
     },
     {
@@ -41,12 +50,21 @@
       "phone": "+49233452881",
       "first": "Heidi",
       "last": "Zahn",
-      "addresses": {
-        "street": "Alte Heerstrasse",
-        "number": "24",
-        "zipCode": "58119",
-        "city": "Hagen"
-      },
+      "addresses": [
+        {
+          "street": "Alte Heerstrasse",
+          "number": "24",
+          "zipCode": "58119",
+          "city": "Hagen"
+        },
+        {
+          "street": "Hauptstrasse",
+          "number": "498",
+          "zipCode": "62598",
+          "city": "Frankfurt",
+          "addressType": "Business"
+        }
+      ],
       "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/master/src/pics/avatar_3.png"
     },
     {
@@ -54,12 +72,21 @@
       "phone": "+496336175884",
       "first": "Pia",
       "last": "Champion",
-      "addresses": {
-        "street": "Margaritten Weg",
-        "number": "168 a ",
-        "zipCode": "64572",
-        "city": "Büttelborn"
-      },
+      "addresses": [
+        {
+          "street": "Margaritten Weg",
+          "number": "168 a ",
+          "zipCode": "64572",
+          "city": "Büttelborn"
+        },
+        {
+          "street": "Hauptstrasse",
+          "number": "498",
+          "zipCode": "62598",
+          "city": "Frankfurt",
+          "addressType": "Business"
+        }
+      ],
       "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/feature/picView/src/pics/avatar_4.png"
     }
   ]

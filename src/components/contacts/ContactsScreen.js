@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Title, Container, Header, Left, Body, Right, Button, Icon, Content} from 'native-base';
 import List from './List';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View, RefreshControl} from 'react-native';
 
 
 class ContactsScreen extends Component {
@@ -11,13 +11,18 @@ class ContactsScreen extends Component {
         this.state = {
             isLoading: true,
             contacts: [],
-            error: null
-
+            error: null,
+            refreshing: false
         }
     }
 
+
     componentDidMount() {
-        fetch('http://192.168.2.118:8080/api/contacts')
+        this.makeRemoteRequest();
+    }
+
+    makeRemoteRequest = () => {
+        fetch('http://192.168.86.245:8080/api/contacts')
             .then((response) => response.json())
             .then((contacts) => {
                 this.setState({
@@ -33,8 +38,16 @@ class ContactsScreen extends Component {
                     error: error
                 })
             });
+
+
     }
 
+    _onRefresh = () => {
+        this.setState({refreshing: true});
+        this.makeRemoteRequest().then(() => {
+            this.setState({refreshing: false});
+        });
+    }
 
     onClickContactItem = (clickedContactId) => {
         let myContact = this.state.contacts.find(contactId => contactId.contactId === clickedContactId);
@@ -76,12 +89,16 @@ class ContactsScreen extends Component {
                         <Right/>
                     </Header>
                     <Content>
-
                         <List
                             onClick={this.onClickContactItem}
                             contacts={this.state.contacts}
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={this.state.refreshing}
+                                    onRefresh={this._onRefresh}
+                                />
+                            }
                         />
-
                     </Content>
 
                 </Container>
