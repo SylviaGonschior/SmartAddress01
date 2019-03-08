@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Title, Container, Header, Left, Body, Right, Button, Icon, Content} from 'native-base';
+import {Title, Container, Header, Left, Body, Right, Button, Icon} from 'native-base';
 import List from './List';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View, RefreshControl, ScrollView} from 'react-native';
 
 
 class ContactsScreen extends Component {
@@ -11,18 +11,24 @@ class ContactsScreen extends Component {
         this.state = {
             isLoading: true,
             contacts: [],
-            error: null
-
+            error: null,
+            refreshing: false
         }
     }
 
+
     componentDidMount() {
-        fetch('http://192.168.86.245:8080/api/contacts') // aktuelle IP Adresse über terminal, ifconfig holen; alternativ ohne server https://my-json-server.typicode.com/SylviaGonschior/SmartAddress01/contacts Leider funktioniert dann der Zugriff auf die Eigenschaften in den Objekten nicht
+        this.makeRemoteRequest();
+    }
+
+    makeRemoteRequest = () => {
+        fetch('https://my-json-server.typicode.com/SylviaGonschior/SmartAddress01/contacts')
             .then((response) => response.json())
             .then((contacts) => {
                 this.setState({
                     isLoading: false,
-                    contacts: contacts
+                    contacts: contacts,
+                    refreshing: false
                 })
 
             })
@@ -30,11 +36,17 @@ class ContactsScreen extends Component {
             .catch((error) => {
                 this.setState({
                     isLoading: false,
-                    error: error
+                    error: error,
+                    refreshing: false
                 })
             });
+
+
     }
 
+    _onRefresh = () => {
+        this.setState({refreshing: true}, this.makeRemoteRequest);
+    }
 
     onClickContactItem = (clickedContactId) => {
         let myContact = this.state.contacts.find(contactId => contactId.contactId === clickedContactId);
@@ -46,7 +58,7 @@ class ContactsScreen extends Component {
     }
 
     render() {
-        console.log(this.state);
+
         const title = {text: 'Kontakte'};
 
         // console.log('nav props: ', this.props.navigation);
@@ -75,14 +87,23 @@ class ContactsScreen extends Component {
                         </Body>
                         <Right/>
                     </Header>
-                    <Content>
 
+                    <ScrollView
+                        contentContainerStyle={styles.contentContainer}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh}
+                            />
+                        }
+                    >
                         <List
                             onClick={this.onClickContactItem}
                             contacts={this.state.contacts}
                         />
 
-                    </Content>
+                    </ScrollView>
+
 
                 </Container>
             );
@@ -104,6 +125,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomWidth: 1,
         borderBottomColor: '#eee'
+    },
+    contentContainer: {
+        flex: 1,
+        paddingVertical: 20
     }
 });
 

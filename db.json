@@ -88,6 +88,28 @@
         }
       ],
       "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/feature/picView/src/pics/avatar_4.png"
+    },
+    {
+      "contactId": "5",
+      "phone": "+496336175884",
+      "first": "Sandrine",
+      "last": "Champion",
+      "addresses": [
+        {
+          "street": "Margaritten Weg",
+          "number": "168 a ",
+          "zipCode": "64572",
+          "city": "Büttelborn"
+        },
+        {
+          "street": "Hauptstrasse",
+          "number": "498",
+          "zipCode": "62598",
+          "city": "Frankfurt",
+          "addressType": "Business"
+        }
+      ],
+      "image": "https://raw.githubusercontent.com/SylviaGonschior/SmartAddress01/feature/picView/src/pics/avatar_4.png"
     }
   ]
 }
