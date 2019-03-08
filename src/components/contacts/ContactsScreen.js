@@ -22,7 +22,7 @@ class ContactsScreen extends Component {
     }
 
     makeRemoteRequest = () => {
-        fetch('http://192.168.2.118:8080/api/contacts')
+        fetch('https://my-json-server.typicode.com/SylviaGonschior/SmartAddress01/contacts')
             .then((response) => response.json())
             .then((contacts) => {
                 this.setState({
