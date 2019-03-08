@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Title, Container, Header, Left, Body, Right, Button, Icon, Content} from 'native-base';
+import {Title, Container, Header, Left, Body, Right, Button, Icon} from 'native-base';
 import List from './List';
-import {ActivityIndicator, StyleSheet, View, RefreshControl} from 'react-native';
+import {ActivityIndicator, StyleSheet, View, RefreshControl, ScrollView} from 'react-native';
 
 
 class ContactsScreen extends Component {
@@ -22,12 +22,13 @@ class ContactsScreen extends Component {
     }
 
     makeRemoteRequest = () => {
-        fetch('http://192.168.86.245:8080/api/contacts')
+        fetch('http://192.168.2.118:8080/api/contacts')
             .then((response) => response.json())
             .then((contacts) => {
                 this.setState({
                     isLoading: false,
-                    contacts: contacts
+                    contacts: contacts,
+                    refreshing: false
                 })
 
             })
@@ -35,7 +36,8 @@ class ContactsScreen extends Component {
             .catch((error) => {
                 this.setState({
                     isLoading: false,
-                    error: error
+                    error: error,
+                    refreshing: false
                 })
             });
 
@@ -43,10 +45,7 @@ class ContactsScreen extends Component {
     }
 
     _onRefresh = () => {
-        this.setState({refreshing: true});
-        this.makeRemoteRequest().then(() => {
-            this.setState({refreshing: false});
-        });
+        this.setState({refreshing: true}, this.makeRemoteRequest);
     }
 
     onClickContactItem = (clickedContactId) => {
@@ -59,7 +58,7 @@ class ContactsScreen extends Component {
     }
 
     render() {
-        console.log(this.state);
+
         const title = {text: 'Kontakte'};
 
         // console.log('nav props: ', this.props.navigation);
@@ -88,18 +87,23 @@ class ContactsScreen extends Component {
                         </Body>
                         <Right/>
                     </Header>
-                    <Content>
-                        <List
-                            onClick={this.onClickContactItem}
-                            contacts={this.state.contacts}
+
+                        <ScrollView
+                            contentContainerStyle={styles.contentContainer}
                             refreshControl={
                                 <RefreshControl
                                     refreshing={this.state.refreshing}
                                     onRefresh={this._onRefresh}
                                 />
                             }
-                        />
-                    </Content>
+                        >
+                            <List
+                                onClick={this.onClickContactItem}
+                                contacts={this.state.contacts}
+                            />
+
+                        </ScrollView>
+
 
                 </Container>
             );
@@ -121,7 +125,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomWidth: 1,
         borderBottomColor: '#eee'
+    },
+    contentContainer: {
+        flex: 1,
+        paddingVertical: 20
     }
-});
+   });
 
 export default ContactsScreen;
