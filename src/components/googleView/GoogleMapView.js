@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from "react-native";
 import MapView from 'react-native-maps';
-import {Marker} from 'react-native-maps';
 
 
 class GoogleMapView extends Component {
@@ -18,9 +17,15 @@ class GoogleMapView extends Component {
                         latitude: 49.694671,
                         longitude: 8.574482,
                         latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                    }}
-                />
+                        longitudeDelta: 0.0421
+                    }}>
+                    <MapView.Marker title="Bensheim"
+                                    coordinate={{
+                                        latitude: 49.694671,
+                                        longitude: 8.574482
+                                    }}
+                    />
+                </MapView>
             </View>
         );
     }

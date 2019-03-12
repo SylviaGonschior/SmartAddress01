@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Content, Text, Thumbnail, Grid, Col, Icon, Header, Left, Body, Title, Right, Button} from 'native-base';
 import {StyleSheet } from 'react-native';
-import AddressView from "../googleView/AddressView";
+import GoogleMapView from '../googleView/GoogleMapView';
 
 
 class ContactDetail extends Component {
@@ -50,9 +50,10 @@ class ContactDetail extends Component {
                                 <Text style={styles.field}> {phone}</Text>
                             </Col>
                         </Grid>
-                        <AddressView/>
-
                     </Content>
+
+                    <GoogleMapView/>
+
                 </Container>
 
         );
