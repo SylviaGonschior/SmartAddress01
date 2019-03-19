@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
+import Config from 'react-native-config';
+import Geocoder from "react-native-geocoding";
 
 
 let { width, height } = Dimensions.get('window');
@@ -9,6 +11,7 @@ const LATITUDE = 49.5222171;
 const LONGITUDE = 8.394294;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const key = Geocoder.setApiKey(Config.GOOGLE_API_KEY);
 
 export default class GoogleMapView extends Component {
     constructor() {
@@ -21,6 +24,20 @@ export default class GoogleMapView extends Component {
                 longitudeDelta: LONGITUDE_DELTA,
             }
         };
+
+    }
+
+    getAddressData () {
+        key;
+        Geocoder.getFromLatLng(this.state.region.latitude,this.state.region.longitude).then(
+            response => {
+                let address = response.results[0].formatted_address;
+                console.log(address);
+
+                alert(address);
+            },
+            error => {console.warn(error);})
+
 
     }
     componentDidMount() {
@@ -55,6 +72,7 @@ export default class GoogleMapView extends Component {
             >
                 <MapView.Marker
                     coordinate={ this.state.region }
+                    onPress={()=> {this.getAddressData()}}
                 />
             </MapView>
         );
@@ -68,9 +86,5 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0
-    },
-    marker: {
-
-
     }
 });
