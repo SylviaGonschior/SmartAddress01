@@ -11,7 +11,7 @@ const LATITUDE = 49.5222171;
 const LONGITUDE = 8.394294;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const key = Geocoder.setApiKey(Config.GOOGLE_API_KEY);
+
 
 export default class GoogleMapView extends Component {
     constructor() {
@@ -28,13 +28,17 @@ export default class GoogleMapView extends Component {
     }
 
     getAddressData () {
-        key;
-        Geocoder.getFromLatLng(this.state.region.latitude,this.state.region.longitude).then(
+        Geocoder.init(Config.GOOGLE_API_KEY);
+        Geocoder.from(this.state.region.latitude,this.state.region.longitude).then(
             response => {
-                let address = response.results[0].formatted_address;
-                console.log(address);
+                let street = response.results[1].address_components[1].long_name;
+                let number = response.results[1].address_components[0].long_name;
+                let zipCode = response.results[1].address_components[7].long_name;
+                let city = response.results[1].address_components[3].long_name;
 
-                alert(address);
+                console.log(response);
+
+                alert(street + " " + number + "\n" + zipCode + " " + city);
             },
             error => {console.warn(error);})
 
@@ -54,19 +58,19 @@ export default class GoogleMapView extends Component {
                 });
             },
             (error) => console.log(error.message),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+            { enableHighAccuracy: false, timeout: 50000, maximumAge: 1000 },
         );
         console.log('current position: ', this.state.region.latitude, this.state.region.longitude);
     }
 
     render() {
+
         return (
             <MapView
                 style={ styles.container }
                 showsUserLocation={ true }
                 region={ this.state.region }
-                onRegionChange={ region => this.setState({region}) }
-                onRegionChangeComplete={ region => this.setState({region}) }
+
                 zoomEnabled={true}
                 loadingEnabled={true}
             >
