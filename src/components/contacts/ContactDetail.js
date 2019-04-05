@@ -1,12 +1,44 @@
 import React, {Component} from 'react';
-import {Container, Content, Text, Thumbnail, Grid, Col, Icon, Header, Left, Body, Title, Right, Button} from 'native-base';
-import {StyleSheet } from 'react-native';
+import {
+    Container,
+    Content,
+    Text,
+    Thumbnail,
+    Grid,
+    Col,
+    Icon,
+    Header,
+    Left,
+    Body,
+    Title,
+    Right,
+    Button
+} from 'native-base';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import GoogleMapView from "../googleView/GoogleMapView";
+import CoordinatesContainer from "../../containers/CoordinatesContainer";
 
 
 class ContactDetail extends Component {
 
+
+    constructor() {
+        super();
+        this.state = {
+            getCurrentLocationButtonClicked: false
+        }
+    }
+
+    getPosition = () => {
+
+        this.setState({
+            getCurrentLocationButtonClicked: true
+        })
+    }
+
     render() {
-        console.log('props: ', this.props.navigation.getParam('contact'));
+        //console.log('props: ', this.props.navigation.getParam('contact'));
+        console.log('render contactDetails');
         const {
             first,
             last,
@@ -14,6 +46,7 @@ class ContactDetail extends Component {
             phone,
             image
         } = this.props.navigation.getParam('contact');
+
 
         const title = {text: 'Details'};
 
@@ -50,8 +83,19 @@ class ContactDetail extends Component {
                         </Col>
                     </Grid>
 
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={
+                            this.getPosition
+                        }>
+                        <Text>open map</Text>
+                    </TouchableOpacity>
 
                 </Content>
+
+                {(this.state.getCurrentLocationButtonClicked === true ? (
+                    <CoordinatesContainer Layout={GoogleMapView}/>) : null)}
+
             </Container>
 
         );
@@ -72,7 +116,6 @@ const styles = StyleSheet.create({
         color: '#4B4B4B'
     },
     title: {
-
         fontSize: 24,
         fontWeight: 'bold',
         color: '#4B4B4B'
@@ -93,6 +136,13 @@ const styles = StyleSheet.create({
     },
     imageCol: {
         width: 80
+    },
+    button: {
+        fontSize: 36,
+        fontWeight: 'bold',
+        backgroundColor: '#E20074',
+        alignItems: 'center',
+        color: '#fff'
     }
 });
 

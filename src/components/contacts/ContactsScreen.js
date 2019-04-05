@@ -88,21 +88,21 @@ class ContactsScreen extends Component {
                         <Right/>
                     </Header>
 
-                    <ScrollView
-                        contentContainerStyle={styles.contentContainer}
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={this.state.refreshing}
-                                onRefresh={this._onRefresh}
+                        <ScrollView
+                            contentContainerStyle={styles.contentContainer}
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={this.state.refreshing}
+                                    onRefresh={this._onRefresh}
+                                />
+                            }
+                        >
+                            <List
+                                onClick={this.onClickContactItem}
+                                contacts={this.state.contacts}
                             />
-                        }
-                    >
-                        <List
-                            onClick={this.onClickContactItem}
-                            contacts={this.state.contacts}
-                        />
 
-                    </ScrollView>
+                        </ScrollView>
 
 
                 </Container>
@@ -130,6 +130,8 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingVertical: 20
     }
-});
+
+   });
+
 
 export default ContactsScreen;

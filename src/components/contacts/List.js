@@ -7,7 +7,8 @@ class List extends Component {
 
     static propTypes = {
         onClick: PropTypes.func,
-        contacts: PropTypes.array.isRequired
+        contacts: PropTypes.array.isRequired,
+        refreshControl: PropTypes.object
     };
 
     constructor(props) {
@@ -18,11 +19,9 @@ class List extends Component {
         const {
             onClick
         } = this.props;
-
         onClick(id);
-
-
     }
+
 
 
     getList = () => {
@@ -53,7 +52,7 @@ class List extends Component {
                 </Card>
             );
         });
-        console.log('props:', this.props);
+        // console.log('props:', this.props);
         return (
             <View>
                 {listItems}
