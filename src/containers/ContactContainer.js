@@ -1,39 +1,72 @@
 import React, {Component} from 'react';
-import { getAddress} from "../actions/index";
+import {fetchContacts} from "../actions/contactAction";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 
-class AddressContainer extends Component {
+class ContactContainer extends Component {
     static propTypes = {
         Layout: PropTypes.func,
-        getAddress: PropTypes.func
+        fetchContacts: PropTypes.func,
+        contacts: PropTypes.array,
+        refreshing: PropTypes.bool,
     };
 
     componentDidMount() {
+        this._refreshData();
+    }
+
+
+    _refreshData = () => {
         const {
-            getAddress
+            fetchContacts
         } = this.props;
 
-        getAddress();
-    }
+        return fetchContacts();
+    };
+
+
+    getPassThroughProps = (props, propTypeKeys) => {
+        let obj = {};
+        let propsKeys = Object.keys(props);
+
+        propsKeys.forEach((propKey) => {
+            let match = false;
+            propTypeKeys.forEach((propTypeKey) => {
+                if (propKey === propTypeKey) {
+                    match = true;
+                    return;
+                }
+            });
+            if (!match) {
+                obj[propKey] = props[propKey];
+            }
+        });
+
+        return obj;
+    };
 
     render() {
         const {
             Layout,
-            street,
-            number,
-            zipCode,
-            city
+            error,
+            loading,
+            contacts,
+            refreshing
         } = this.props;
+
+        const passThroughProps = this.getPassThroughProps(this.props, Object.keys(ContactContainer.propTypes));
+
 
         return (
 
             <Layout
-                street={street}
-                number={number}
-                zipCode={zipCode}
-                city={city}
+                {...passThroughProps}
+                error={error}
+                loading={loading}
+                contacts={contacts}
+                refreshing={refreshing}
+                refreshData={this._refreshData}
             />
 
         );
@@ -43,20 +76,16 @@ class AddressContainer extends Component {
 
 const mapStateToProps = state => {
 
-    return{
-        street: state.location.address.street,
-        number: state.location.address.number,
-        zipCode: state.location.address.zipCode,
-        city: state.location.address.city
+    return {
+        contacts: state.contact.contacts,
+        refreshing: state.contact.loading || false
     }
-
 
 };
 
 const mapDispatchToProps = {
-    getAddress: getAddress
+    fetchContacts: fetchContacts
 };
 
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(AddressContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ContactContainer)

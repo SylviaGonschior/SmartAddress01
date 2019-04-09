@@ -1,75 +1,44 @@
 import React, {Component} from 'react';
-import {Title, Container, Header, Left, Body, Right, Button, Icon} from 'native-base';
-import List from './List';
+import {Title, Container, Header, Left, Body, Right, Button, Icon, Content} from 'native-base';
 import {ActivityIndicator, StyleSheet, View, RefreshControl, ScrollView} from 'react-native';
+import PropTypes from "prop-types";
+import ContactListView from "./ContactListView";
 
 
 class ContactsScreen extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: true,
-            contacts: [],
-            error: null,
-            refreshing: false
-        }
-    }
-
-
-    componentDidMount() {
-        this.makeRemoteRequest();
-    }
-
-    makeRemoteRequest = () => {
-        fetch('https://my-json-server.typicode.com/SylviaGonschior/SmartAddress01/contacts')
-            .then((response) => response.json())
-            .then((contacts) => {
-                this.setState({
-                    isLoading: false,
-                    contacts: contacts,
-                    refreshing: false
-                })
-
-            })
-
-            .catch((error) => {
-                this.setState({
-                    isLoading: false,
-                    error: error,
-                    refreshing: false
-                })
-            });
-
-
-    }
-
-    _onRefresh = () => {
-        this.setState({refreshing: true}, this.makeRemoteRequest);
-    }
+    static propTypes = {
+        contacts: PropTypes.array.isRequired,
+        refreshData: PropTypes.func.isRequired,
+        refreshing: PropTypes.bool.isRequired,
+        navigation: PropTypes.object
+    };
 
     onClickContactItem = (clickedContactId) => {
-        let myContact = this.state.contacts.find(contactId => contactId.contactId === clickedContactId);
+        const {
+            contacts,
+            navigation
+        } = this.props;
 
-        const {navigate} = this.props.navigation;
-        navigate('Details', {
+        let myContact = contacts.find(contact => contact.contactId === clickedContactId);
+
+        navigation.navigate('Details', {
             contact: myContact
-        });
+        })
+
     }
 
     render() {
 
         const title = {text: 'Kontakte'};
 
-        // console.log('nav props: ', this.props.navigation);
-        if (this.state.isLoading) {
+        const {
+            refreshing,
+            refreshData,
+            navigation
+        } = this.props;
 
-            return (
-                <View style={styles.container}>
-                    <ActivityIndicator/>
-                </View>
-            )
-        } else {
+        // console.log('nav props: ', this.props.navigation);
 
             return (
                 <Container style={{flex: 1}}>
@@ -77,7 +46,7 @@ class ContactsScreen extends Component {
                         <Left>
                             <Button
                                 transparent
-                                onPress={() => this.props.navigation.goBack()}
+                                onPress={() => navigation.goBack()}
                             >
                                 <Icon name='arrow-back'/>
                             </Button>
@@ -88,27 +57,24 @@ class ContactsScreen extends Component {
                         <Right/>
                     </Header>
 
-                        <ScrollView
-                            contentContainerStyle={styles.contentContainer}
-                            refreshControl={
-                                <RefreshControl
-                                    refreshing={this.state.refreshing}
-                                    onRefresh={this._onRefresh}
-                                />
-                            }
-                        >
-                            <List
-                                onClick={this.onClickContactItem}
-                                contacts={this.state.contacts}
+                    <ScrollView
+                        contentContainerStyle={styles.contentContainer}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={refreshing}
+                                onRefresh={() => refreshData()}
+                                colors={['#E20074']}
                             />
-
-                        </ScrollView>
-
-
+                        }
+                    >
+                        <ContactListView
+                            contacts={this.props.contacts}
+                            onClick={this.onClickContactItem}
+                        />
+                    </ScrollView>
                 </Container>
             );
         }
-    }
 }
 
 const styles = StyleSheet.create({
@@ -131,7 +97,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20
     }
 
-   });
+});
 
 
 export default ContactsScreen;

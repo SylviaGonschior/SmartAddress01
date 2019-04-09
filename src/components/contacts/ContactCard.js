@@ -18,6 +18,7 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import GoogleMapView from "../googleView/GoogleMapView";
 import CoordinatesContainer from "../../containers/CoordinatesContainer";
 
+
 class ContactDetail extends Component {
 
 
@@ -37,13 +38,15 @@ class ContactDetail extends Component {
 
     render() {
         //console.log('props: ', this.props.navigation.getParam('contact'));
-
+        console.log('render contactDetails');
         const {
             first,
             last,
+            addresses,
             phone,
             image
         } = this.props.navigation.getParam('contact');
+
 
         const title = {text: 'Details'};
 
@@ -73,12 +76,13 @@ class ContactDetail extends Component {
                             <Text style={styles.title}> Name: </Text>
                             <Text style={styles.field}> {first} {last} </Text>
                             <Text style={styles.title}> Adresse: </Text>
-                            <Text style={styles.field}> </Text>
-                            <Text style={styles.field}> </Text>
+                            <Text style={styles.field}> {addresses[0].street} {addresses[0].number}</Text>
+                            <Text style={styles.field}> {addresses[0].zipCode} {addresses[0].city}</Text>
                             <Text style={styles.title}> Telefonnummer: </Text>
                             <Text style={styles.field}> {phone}</Text>
                         </Col>
                     </Grid>
+
                     <TouchableOpacity
                         style={styles.button}
                         onPress={

@@ -1,29 +1,44 @@
+import {
+    CONTACT_FETCH,
+    CONTACT_SUCCESS,
+    CONTACT_FAILURE
+} from './../actions/contactAction';
+
 
 const initialState = {
-    address: {},
-    coordinates: {
-        latitude: 49.5222171,
-        longitude: 8.394294,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0922
-    }
+
+    contacts: [],
+    loading: false,
+    error: null
+
 };
 
 
-function getLocation(state = initialState, action) {
-    console.log('reducer:', action);
+function getContactData(state = initialState, action) {
+    console.log('reducer contact:', action);
 
     switch (action.type) {
-        case 'COORDINATES_FETCH':
-            return Object.assign({}, state, {
+        case CONTACT_FETCH:
+            return {
                 ...state,
-                coordinates: action.payload
-            })
-        case 'LOCATION_FETCH':
-            return Object.assign({}, state, {
+                loading: true,
+                error: null
+            };
+        case CONTACT_SUCCESS:
+            return {
                 ...state,
-                address: action.payload
-            })
+                loading: false,
+                contacts: action.payload
+
+            };
+        case CONTACT_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
+                contacts: []
+            };
+
         default:
             return state
     }
@@ -31,4 +46,7 @@ function getLocation(state = initialState, action) {
 }
 
 
-export default getLocation;
+export default getContactData;
+
+
+
