@@ -3,9 +3,6 @@ import {
     Container,
     Content,
     Text,
-    Thumbnail,
-    Grid,
-    Col,
     Icon,
     Header,
     Left,
@@ -15,8 +12,9 @@ import {
     Button
 } from 'native-base';
 import {StyleSheet, TouchableOpacity} from 'react-native';
-import GoogleMapView from "../googleView/GoogleMapView";
-import CoordinatesContainer from "../../containers/CoordinatesContainer";
+import GoogleMapView from '../googleView/GoogleMapView';
+import CoordinatesContainer from '../../containers/CoordinatesContainer';
+import ContactCard from './ContactCard';
 
 class ContactDetail extends Component {
 
@@ -29,7 +27,6 @@ class ContactDetail extends Component {
     }
 
     getPosition = () => {
-
         this.setState({
             getCurrentLocationButtonClicked: true
         })
@@ -65,28 +62,18 @@ class ContactDetail extends Component {
                         </Body>
                         <Right/>
                     </Header>
-                    <Grid style={styles.grid}>
-                        <Col style={styles.imageCol}>
-                            <Thumbnail large style={styles.image} source={{uri: image}}/>
-                        </Col>
-                        <Col>
-                            <Text style={styles.title}> Name: </Text>
-                            <Text style={styles.field}> {first} {last} </Text>
-                            <Text style={styles.title}> Adresse: </Text>
-                            <Text style={styles.field}> </Text>
-                            <Text style={styles.field}> </Text>
-                            <Text style={styles.title}> Telefonnummer: </Text>
-                            <Text style={styles.field}> {phone}</Text>
-                        </Col>
-                    </Grid>
+                 <ContactCard
+                     first={first}
+                     last={last}
+                     phone={phone}
+                     image={image}
+
+                 />
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={
-                            this.getPosition
-                        }>
+                        onPress={this.getPosition}>
                         <Text>open map</Text>
                     </TouchableOpacity>
-
                 </Content>
 
                 {(this.state.getCurrentLocationButtonClicked === true ? (
