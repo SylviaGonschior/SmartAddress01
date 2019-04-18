@@ -11,7 +11,6 @@ const initialState = {
 
 
 function getLocation(state = initialState, action) {
-    console.log('reducer:', action);
 
     switch (action.type) {
         case 'COORDINATES_FETCH':

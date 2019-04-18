@@ -42,10 +42,10 @@ class ContactListView extends Component {
                                     <Text style={styles.name}> {item.first} {item.last}</Text>
                                 </Row>
                                 <Row>
-                                    <Text style={styles.tel}> Strasse: </Text>
+                                    <Text style={styles.tel}> Strasse: {item.street} {item.number}</Text>
                                 </Row>
                                 <Row>
-                                    <Text style={styles.tel}> Ort: </Text>
+                                    <Text style={styles.tel}> Ort: {item.zipCode} {item.city} </Text>
                                 </Row>
                                 <Row>
                                     <Text style={styles.tel}> {item.phone}</Text>

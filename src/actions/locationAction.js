@@ -1,4 +1,4 @@
-import {Dimensions, Text, View} from "react-native";
+import {Dimensions} from "react-native";
 import Geocoder from "react-native-geocoding";
 import Config from "react-native-config";
 
@@ -121,33 +121,4 @@ export const getCoordinates = () => dispatch => {
         })
 
 };
-const makeRemoteRequest = () => {
-    fetch('https://my-json-server.typicode.com/SylviaGonschior/SmartAddress01/contacts')
-        .then((response) => response.json())
-        .then((contacts) => {
-            this.setState({
-                isLoading: false,
-                contacts: contacts,
-                refreshing: false
-            })
 
-        })
-
-        .catch((error) => {
-            this.setState({
-                isLoading: false,
-                error: error,
-                refreshing: false
-            })
-        });
-
-
-};
-
-export const getContact =(contact) => dispatch => {
-    console.log('getContact');
-    dispatch({
-        payload: contact,
-        type: 'CONTACT_FETCH'
-    })
-};

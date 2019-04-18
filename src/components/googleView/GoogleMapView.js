@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Dimensions, View, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import MapView from 'react-native-maps';
-import DetailsModal from "./DetailsModal";
-
-
 
 
 class GoogleMapView extends Component {
@@ -12,6 +9,11 @@ class GoogleMapView extends Component {
         isModalVisible: false,
 
     };
+
+    onMarkerClicked = () => {
+        const {onMarkerClicked } = this.props;
+        onMarkerClicked();
+    }
 
     render() {
         console.log('render');
@@ -41,17 +43,11 @@ class GoogleMapView extends Component {
                 <MapView.Marker
                     coordinate={region}
                     pinColor='purple'
-                    onPress={() => this.setState({isModalVisible: true})}
+                    onPress={this.onMarkerClicked}
                 >
-                    <DetailsModal
-                        isModalVisible={this.state.isModalVisible}
-                        onCloseModal={()=>this.setState({isModalVisible: false})}
-                    />
 
                 </MapView.Marker>
             </MapView>
-
-
 
 
         );

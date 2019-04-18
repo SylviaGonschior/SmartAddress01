@@ -13,6 +13,7 @@ class ContactCard extends Component {
     render() {
 
         const {
+            contactId,
             first,
             last,
             phone,
@@ -24,9 +25,6 @@ class ContactCard extends Component {
         } = this.props;
 
         return (
-
-
-
                     <Grid style={styles.grid}>
                         <Col style={styles.imageCol}>
                             <Thumbnail large style={styles.image} source={{uri: image}}/>
@@ -41,7 +39,6 @@ class ContactCard extends Component {
                             <Text style={styles.field}> {phone}</Text>
                         </Col>
                     </Grid>
-
         );
     }
 }

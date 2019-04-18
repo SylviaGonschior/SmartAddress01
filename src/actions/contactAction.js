@@ -3,11 +3,20 @@ import ContactApi from './../api/ContactApi';
 export const CONTACT_FETCH = 'CONTACT_FETCH';
 export const CONTACT_SUCCESS = 'CONTACT_SUCCESS';
 export const CONTACT_FAILURE = 'CONTACT_FAILURE';
+export const ADDRESS_TO_CONTACT = 'ADDRESS_TO_CONTACT'
 
 
 export const fetchContactsFailure = error => ({
     type: CONTACT_FAILURE,
     payload: {error}
+
+    // TODO: do good error handling
+    /*
+    .catch((error) => {
+            console.error('fetch contact failed', error);
+        });
+     */
+
 });
 
 const getContacts = (contacts) => {
@@ -17,7 +26,12 @@ const getContacts = (contacts) => {
             first: contact.first,
             last: contact.last,
             phone: contact.phone,
-            image: contact.image
+            image: contact.image,
+            street: contact.addresses[0].street,
+            number: contact.addresses[0].number,
+            zipCode: contact.addresses[0].zipCode,
+            city: contact.addresses[0].city
+
         }
     });
 };
@@ -27,7 +41,7 @@ export const fetchContacts = () => dispatch => {
 
     return ContactApi.loadContacts()
 
-        .then((contacts)=> getContacts(contacts))
+        .then((contacts) => getContacts(contacts))
         .then((contacts) => {
             dispatch({
                 type: CONTACT_SUCCESS,
@@ -35,40 +49,29 @@ export const fetchContacts = () => dispatch => {
             });
         })
         .catch(error => dispatch(fetchContactsFailure(error)));
+    // TODO: do good error handling
 
 };
 
+export const addAddressToContact = (contactToAddAddress, newAddressData) => dispatch => {
+    console.log('contactToAddAdress', contactToAddAddress);
+    console.log('newAdressData', newAddressData);
+    // neuen adresses array erstellen und neue Adressinformation in array einfügen
 
-/*
+    let newAddressesArray = [newAddressData];
+    // Kontakt contactToAddAdress das Array newAdressesArray mit neuen Adressinformation zuweisen. Als neuen addresses key um struktur der anderen Kontakte einzuhalten.
+    contactToAddAddress['addresses'] = newAddressesArray;
 
-    => dispatch => {
-    fetch
-        .then((response) => response.json())
+    return ContactApi.saveAddressToContact(contactToAddAddress)
+        .then(() => ContactApi.loadContacts())
+        .then((contacts) => getContacts(contacts))
         .then((contacts) => {
             dispatch({
-                type: 'CONTACT_SUCCESS',
-                payload: contacts
-            })
-
+                type: CONTACT_SUCCESS,
+                payload: contacts,
+            });
         })
-
-        .catch((error) => {
-            // TODO: do good error handling
-            console.error('fetch contact failed', error);
-        });
-};
-
-
-export const fetchContacts = () => dispatch => {
-    fetchContactsStart();
-    return fetch('https://my-json-server.typicode.com/SylviaGonschior/SmartAddress01/contacts')
-        .then(handleErrors)
-        .then(response => response.json())
-        .then(json => {
-            dispatch(fetchContactsSuccess(json.contacts));
-            return json.contacts;
-        })
-        .then((contacts)=> formatContacts(contacts))
         .catch(error => dispatch(fetchContactsFailure(error)));
+    // TODO: do good error handling
+
 };
-*/

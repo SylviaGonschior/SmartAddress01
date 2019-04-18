@@ -29,7 +29,6 @@ function getContactData(state = initialState, action) {
                 ...state,
                 loading: false,
                 contacts: action.payload
-
             };
         case CONTACT_FAILURE:
             return {
@@ -45,8 +44,10 @@ function getContactData(state = initialState, action) {
 
 }
 
-
 export default getContactData;
+
+
+
 
 
 

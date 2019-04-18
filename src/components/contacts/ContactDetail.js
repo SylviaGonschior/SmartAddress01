@@ -15,14 +15,30 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import GoogleMapView from '../googleView/GoogleMapView';
 import CoordinatesContainer from '../../containers/CoordinatesContainer';
 import ContactCard from './ContactCard';
+import DetailsModal from "../googleView/DetailsModal";
+import AddressContainer from './../../containers/AddressContainer';
+import Contact from './../../containers/Contact';
+import PropTypes from "prop-types";
 
 class ContactDetail extends Component {
-
+    static propTypes = {
+        first: PropTypes.string,
+        last: PropTypes.string,
+        phone: PropTypes.string,
+        image: PropTypes.string,
+        street: PropTypes.string,
+        number: PropTypes.string,
+        zipCode: PropTypes.string,
+        city: PropTypes.string,
+        contactId: PropTypes.string
+    }
 
     constructor() {
         super();
         this.state = {
-            getCurrentLocationButtonClicked: false
+            getCurrentLocationButtonClicked: false,
+            isModalVisible: false
+
         }
     }
 
@@ -32,14 +48,31 @@ class ContactDetail extends Component {
         })
     }
 
+    onSaveAddress = (street, number, zipCode, city) => {
+        const {
+            addAddressToContact,
+            navigation
+        } = this.props;
+        this.setState({isModalVisible: false});
+        navigation.navigate('Contacts');
+        addAddressToContact(street, number, zipCode, city);
+
+    }
+
+
+
     render() {
         //console.log('props: ', this.props.navigation.getParam('contact'));
-
         const {
             first,
             last,
             phone,
-            image
+            image,
+            street,
+            number,
+            zipCode,
+            city,
+            contactId
         } = this.props.navigation.getParam('contact');
 
         const title = {text: 'Details'};
@@ -62,13 +95,20 @@ class ContactDetail extends Component {
                         </Body>
                         <Right/>
                     </Header>
-                 <ContactCard
-                     first={first}
-                     last={last}
-                     phone={phone}
-                     image={image}
+                    <Contact
+                        Layout={ContactCard}
+                        first={first}
+                        last={last}
+                        phone={phone}
+                        image={image}
+                        contactId={contactId}
+                        street={street}
+                        number={number}
+                        zipCode={zipCode}
+                        city={city}
+                        addAddressToContact={this.onSaveAddress}
 
-                 />
+                    />
                     <TouchableOpacity
                         style={styles.button}
                         onPress={this.getPosition}>
@@ -77,7 +117,20 @@ class ContactDetail extends Component {
                 </Content>
 
                 {(this.state.getCurrentLocationButtonClicked === true ? (
-                    <CoordinatesContainer Layout={GoogleMapView}/>) : null)}
+                    <CoordinatesContainer
+                        Layout={GoogleMapView}
+                        onMarkerClicked={() => this.setState({
+                            isModalVisible: true,
+                            getCurrentLocationButtonClicked: false
+                        })}
+                    />) : null)}
+
+                <AddressContainer
+                    Layout={DetailsModal}
+                    isModalVisible={this.state.isModalVisible}
+                    onCloseModal={() => this.setState({isModalVisible: false})}
+                    onSaveAddress={this.onSaveAddress}
+                />
 
             </Container>
 

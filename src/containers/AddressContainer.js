@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { getAddress} from "../actions/index";
+import { getAddress} from "../actions/locationAction";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -18,6 +18,28 @@ class AddressContainer extends Component {
         getAddress();
     }
 
+
+
+    getPassThroughProps = (props, propTypeKeys) => {
+        let obj = {};
+        let propsKeys = Object.keys(props);
+
+        propsKeys.forEach((propKey) => {
+            let match = false;
+            propTypeKeys.forEach((propTypeKey) => {
+                if (propKey === propTypeKey) {
+                    match = true;
+                    return;
+                }
+            });
+            if (!match) {
+                obj[propKey] = props[propKey];
+            }
+        });
+
+        return obj;
+    };
+
     render() {
         const {
             Layout,
@@ -27,9 +49,12 @@ class AddressContainer extends Component {
             city
         } = this.props;
 
+        const passThroughProps = this.getPassThroughProps(this.props, Object.keys(AddressContainer.propTypes));
+
         return (
 
             <Layout
+                {...passThroughProps}
                 street={street}
                 number={number}
                 zipCode={zipCode}
@@ -43,7 +68,7 @@ class AddressContainer extends Component {
 
 const mapStateToProps = state => {
 
-    return{
+    return {
         street: state.location.address.street,
         number: state.location.address.number,
         zipCode: state.location.address.zipCode,

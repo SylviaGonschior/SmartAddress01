@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Title, Container, Header, Left, Body, Right, Button, Icon, Content} from 'native-base';
-import {ActivityIndicator, StyleSheet, View, RefreshControl, ScrollView} from 'react-native';
+import {Title, Container, Header, Left, Body, Right, Button, Icon} from 'native-base';
+import { StyleSheet,  RefreshControl, ScrollView} from 'react-native';
 import PropTypes from "prop-types";
 import ContactListView from "./ContactListView";
 
@@ -19,9 +19,9 @@ class ContactsScreen extends Component {
             contacts,
             navigation
         } = this.props;
-
+// suche anhand der geklickten clickedContactId in dem array aller kontakte contacts nach dem Kontakt mit der gleichen id. Weise diesen Kontakt myContact zu.
         let myContact = contacts.find(contact => contact.contactId === clickedContactId);
-
+//navigiere zu Details route der Navigation und hänge parameter {contact:myContact} an. Angehängener Parameter ist nach navigation als prop verfügbar.
         navigation.navigate('Details', {
             contact: myContact
         })
@@ -79,7 +79,7 @@ class ContactsScreen extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+       flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'

@@ -5,7 +5,8 @@ import HomeScreen from './HomeScreen';
 import {createBottomTabNavigator, createAppContainer, createStackNavigator} from 'react-navigation';
 import ContactDetail from '../contacts/ContactDetail';
 import {Icon} from 'native-base';
-import ContactContainer from "../../containers/ContactContainer";
+import ContactsContainer from "../../containers/ContactsContainer";
+import Contact from "../../containers/Contact";
 
 
 const TabScreens = createBottomTabNavigator({
@@ -24,7 +25,7 @@ const TabScreens = createBottomTabNavigator({
         }
     },
     Contacts: {
-        screen: props => <ContactContainer
+        screen: props => <ContactsContainer
             Layout={ContactsScreen}
             {...props}/>,
         navigationOptions: {
@@ -78,7 +79,9 @@ const AppNavigator = createStackNavigator(
             screen: TabScreens,
         },
         Details: {
-            screen: ContactDetail
+            screen: props => <Contact
+                Layout={ContactDetail}
+                {...props}/>,
         }
     },
     {

@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 
-class ContactContainer extends Component {
+class ContactsContainer extends Component {
     static propTypes = {
         Layout: PropTypes.func,
         fetchContacts: PropTypes.func,
         contacts: PropTypes.array,
-        refreshing: PropTypes.bool,
+        refreshing: PropTypes.bool
     };
 
     componentDidMount() {
@@ -55,7 +55,7 @@ class ContactContainer extends Component {
             refreshing
         } = this.props;
 
-        const passThroughProps = this.getPassThroughProps(this.props, Object.keys(ContactContainer.propTypes));
+        const passThroughProps = this.getPassThroughProps(this.props, Object.keys(ContactsContainer.propTypes));
 
 
         return (
@@ -75,7 +75,7 @@ class ContactContainer extends Component {
 
 
 const mapStateToProps = state => {
-
+    console.log('state ContactsContainer', state);
     return {
         contacts: state.contact.contacts,
         refreshing: state.contact.loading || false
@@ -88,4 +88,4 @@ const mapDispatchToProps = {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsContainer)

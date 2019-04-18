@@ -1,16 +1,33 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, View, Text, StyleSheet, Button} from 'react-native';
+import { View, StyleSheet, Button} from 'react-native';
 import Modal from 'react-native-modal';
-import AddressContainer from './../../containers/AddressContainer';
-import AddressView from "../address/AddressView";
+import AddressView from '../address/AddressView';
+
 
 class DetailsModal extends Component {
+
+    getCurrentLocationData = () => {
+
+       const {
+           onSaveAddress,
+           street,
+           number,
+           zipCode,
+           city
+       } = this.props;
+
+       onSaveAddress(street, number, zipCode, city);
+    }
+
 
     render() {
         const {
             onCloseModal,
-            isModalVisible
-
+            isModalVisible,
+            street,
+            number,
+            zipCode,
+            city
         } = this.props;
 
 
@@ -28,25 +45,24 @@ class DetailsModal extends Component {
                 >
 
                     <View styles={styles.modal}>
-                        <AddressContainer
-                            Layout={AddressView}/>
+                        <AddressView
+                            street={street}
+                            number={number}
+                            zipCode={zipCode}
+                            city={city}/>
 
                         <Button
                             title='Ja, diese Adresse bitte zu meinem Kontakt hinzufügen'
                             color='#E20074'
-                            onPress={()=> console.log('submit clicked')}
+                            onPress={this.getCurrentLocationData}
                             styles={styles.submit}
-                        >
-                        </Button>
+                        />
                         <Button
                             title='x'
                             color='#7C7C7C'
                             onPress={onCloseModal}
                             styles={styles.close}
-                        >
-
-
-                        </Button>
+                        />
 
                     </View>
 
