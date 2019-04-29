@@ -13,12 +13,12 @@ const TabScreens = createBottomTabNavigator({
     Home: {
         screen: HomeScreen,
         navigationOptions: {
-            tabBarLabel:"Home",
-            tabBarIcon:({ focused }) => (
+            tabBarLabel: "Home",
+            tabBarIcon: ({focused}) => (
                 <Icon
-                    name= 'home'
+                    name='home'
                     size={20}
-                    style={{color: focused ? '#262626' : '#FFFFFF', marginTop:30, height:25, width: 110 }}
+                    style={{color: focused ? '#262626' : '#FFFFFF', marginTop: 30, height: 25, width: 110}}
                 />
             ),
             showIcon: true
@@ -29,12 +29,12 @@ const TabScreens = createBottomTabNavigator({
             Layout={ContactsScreen}
             {...props}/>,
         navigationOptions: {
-            tabBarLabel:"Kontakte",
-            tabBarIcon:({ focused }) => (
+            tabBarLabel: "Kontakte",
+            tabBarIcon: ({focused}) => (
                 <Icon
-                    name= 'contacts'
+                    name='contacts'
                     size={20}
-                    style={{color: focused ? '#262626' : '#FFFFFF', marginTop:30, height:25, width: 140 }}
+                    style={{color: focused ? '#262626' : '#FFFFFF', marginTop: 30, height: 25, width: 140}}
                 />
             ),
             showIcon: true
@@ -43,12 +43,12 @@ const TabScreens = createBottomTabNavigator({
     Settings: {
         screen: SettingsScreen,
         navigationOptions: {
-            tabBarLabel:"Settings",
-            tabBarIcon:({ focused }) => (
+            tabBarLabel: "Settings",
+            tabBarIcon: ({focused}) => (
                 <Icon
-                    name= 'settings'
+                    name='settings'
                     size={20}
-                    style={{color: focused ? '#262626' : '#FFFFFF', marginTop:30, height:25, width: 130 }}
+                    style={{color: focused ? '#262626' : '#FFFFFF', marginTop: 30, height: 25, width: 130}}
                 />
             ),
             showIcon: true
@@ -66,8 +66,8 @@ const TabScreens = createBottomTabNavigator({
         },
         style: {
             backgroundColor: '#e91e63',
-            margin: 20,
-            paddingBottom: 15
+            padding: 20,
+            height: 60
         }
     }
 });
