@@ -32,9 +32,11 @@ class ContactCard extends Component {
                         <Col>
                             <Text style={styles.title}> Name: </Text>
                             <Text style={styles.field}> {first} {last} </Text>
+                            <Text />
                             <Text style={styles.title}> Adresse: </Text>
-                            <Text style={styles.field}> {street} {number} </Text>
+                            <Text style={styles.field1}> {street} {number} </Text>
                             <Text style={styles.field}>{zipCode} {city} </Text>
+                            <Text />
                             <Text style={styles.title}> Telefonnummer: </Text>
                             <Text style={styles.field}> {phone}</Text>
                         </Col>
@@ -57,14 +59,22 @@ const styles = StyleSheet.create({
         color: '#4B4B4B'
     },
     title: {
-        fontSize: 24,
+        fontSize: 18,
         fontWeight: 'bold',
         color: '#4B4B4B'
     },
     field: {
-
         borderWidth: 1,
-        borderRadius: 8
+        borderRadius: 8,
+        padding: 5,
+        marginLeft: 10
+    },
+    field1: {
+        borderWidth: 1,
+        borderRadius: 8,
+        padding: 5,
+        marginBottom: 5,
+        marginLeft: 10
     },
     image: {
         width: 70,
@@ -73,17 +83,11 @@ const styles = StyleSheet.create({
     },
     grid: {
         marginTop: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        paddingRight: 20
     },
     imageCol: {
         width: 80
-    },
-    button: {
-        fontSize: 36,
-        fontWeight: 'bold',
-        backgroundColor: '#E20074',
-        alignItems: 'center',
-        color: '#fff'
     }
 });
 
