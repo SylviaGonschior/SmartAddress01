@@ -60,7 +60,6 @@ class ContactDetail extends Component {
     }
 
 
-
     render() {
         //console.log('props: ', this.props.navigation.getParam('contact'));
         const {
@@ -112,7 +111,7 @@ class ContactDetail extends Component {
                     <TouchableOpacity
                         style={styles.button}
                         onPress={this.getPosition}>
-                        <Text>open map</Text>
+                        <Text style={styles.buttonText}>Standort anzeigen</Text>
                     </TouchableOpacity>
                 </Content>
 
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
         color: '#4B4B4B'
     },
     field: {
-
+        padding: 3,
         borderWidth: 1,
         borderRadius: 8
     },
@@ -174,9 +173,16 @@ const styles = StyleSheet.create({
         width: 80
     },
     button: {
-        fontSize: 36,
-        fontWeight: 'bold',
         backgroundColor: '#E20074',
+        marginLeft: 90,
+        marginRight: 20,
+        marginTop: 30,
+        padding: 10,
+        paddingRight: 10
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: 'bold',
         alignItems: 'center',
         color: '#fff'
     }
