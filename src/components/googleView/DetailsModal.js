@@ -1,22 +1,23 @@
 import React, {Component} from 'react';
-import { View, StyleSheet, Button} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Modal from 'react-native-modal';
 import AddressView from '../address/AddressView';
+import {Button} from "react-native-elements";
 
 
 class DetailsModal extends Component {
 
     getCurrentLocationData = () => {
 
-       const {
-           onSaveAddress,
-           street,
-           number,
-           zipCode,
-           city
-       } = this.props;
+        const {
+            onSaveAddress,
+            street,
+            number,
+            zipCode,
+            city
+        } = this.props;
 
-       onSaveAddress(street, number, zipCode, city);
+        onSaveAddress(street, number, zipCode, city);
     }
 
 
@@ -33,7 +34,7 @@ class DetailsModal extends Component {
 
         return (
 
-            <View styles={styles.container}>
+            <View>
 
                 <Modal
                     isVisible={isModalVisible}
@@ -43,28 +44,26 @@ class DetailsModal extends Component {
                     backdropTransitionOutTiming={2000}
                     onBackdropPress={onCloseModal}
                 >
+                  <View style={{marginTop: 200}}>
+                    <AddressView
+                        street={street}
+                        number={number}
+                        zipCode={zipCode}
+                        city={city}/>
+                  </View>
 
-                    <View styles={styles.modal}>
-                        <AddressView
-                            street={street}
-                            number={number}
-                            zipCode={zipCode}
-                            city={city}/>
-
-                        <Button
-                            title='Ja, diese Adresse bitte zu meinem Kontakt hinzufügen'
-                            color='#E20074'
-                            onPress={this.getCurrentLocationData}
-                            styles={styles.submit}
-                        />
-                        <Button
-                            title='x'
-                            color='#7C7C7C'
-                            onPress={onCloseModal}
-                            styles={styles.close}
-                        />
-
-                    </View>
+                    <Button
+                        title='Ja, diese Adresse bitte zu meinem Kontakt hinzufügen'
+                        onPress={this.getCurrentLocationData}
+                        buttonStyle={styles.buttonSubmit}
+                        titleStyle={styles.buttonText}
+                    />
+                    <Button
+                        title='Och, nö lass mal'
+                        onPress={onCloseModal}
+                        buttonStyle={styles.buttonCancel}
+                        titleStyle={styles.buttonText}
+                    />
 
                 </Modal>
 
@@ -77,28 +76,23 @@ class DetailsModal extends Component {
 
 const styles = StyleSheet.create({
 
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#4B4B4B',
-        padding: 100,
-        height: 20,
-        width: 20
+    buttonSubmit: {
+        backgroundColor: '#E20074',
+        padding: 10,
+        margin: 5,
+        opacity: 0.7
     },
-    modal: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 100
+    buttonCancel: {
+        backgroundColor: '#7C7C7C',
+        padding: 10,
+        margin: 5,
+        opacity: 0.7
     },
-    close: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    submit: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
+    buttonText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#fff'
     }
 
 });
