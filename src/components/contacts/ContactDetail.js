@@ -53,9 +53,12 @@ class ContactDetail extends Component {
             addAddressToContact,
             navigation
         } = this.props;
-        this.setState({isModalVisible: false});
-        navigation.navigate('Contacts');
-        addAddressToContact(street, number, zipCode, city);
+       this.setState({isModalVisible: false});
+        addAddressToContact(street, number, zipCode, city)
+            .then (()=> {
+                // wird ausgeführt, wenn das promise der action fertig ist
+             navigation.goBack();
+            })
 
     }
 
@@ -124,12 +127,13 @@ class ContactDetail extends Component {
                         })}
                     />) : null)}
 
+                {(this.state.isModalVisible === true ? (
                 <AddressContainer
                     Layout={DetailsModal}
                     isModalVisible={this.state.isModalVisible}
                     onCloseModal={() => this.setState({isModalVisible: false})}
                     onSaveAddress={this.onSaveAddress}
-                />
+                />) : null)}
 
             </Container>
 
