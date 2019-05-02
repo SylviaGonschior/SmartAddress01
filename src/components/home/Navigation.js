@@ -1,6 +1,5 @@
 import React from 'react';
 import ContactsScreen from '../contacts/ContactsScreen';
-import SettingsScreen from '../settings/SettingsScreen';
 import HomeScreen from './HomeScreen';
 import {createBottomTabNavigator, createAppContainer, createStackNavigator} from 'react-navigation';
 import ContactDetail from '../contacts/ContactDetail';
@@ -39,21 +38,6 @@ const TabScreens = createBottomTabNavigator({
             ),
             showIcon: true
         }
-    },
-    Settings: {
-        screen: SettingsScreen,
-        navigationOptions: {
-            tabBarLabel: "Settings",
-            tabBarIcon: ({focused}) => (
-                <Icon
-                    name='settings'
-                    size={20}
-                    style={{color: focused ? '#262626' : '#FFFFFF', marginTop: 30, height: 25, width: 130}}
-                />
-            ),
-            showIcon: true
-        }
-
     }
 }, {
 
